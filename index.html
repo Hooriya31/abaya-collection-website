@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Shop elegant and stylish abayas online.">
-  <title>Abaya Collection — Elegance in Every Thread</title>
+  <title>Abaya Collection.</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     /* ── TOKENS ──────────────────────────────────────────────── */
@@ -26,12 +26,13 @@
 
     /* ── RESET ───────────────────────────────────────────────── */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; font-size: 16px; max-width: 100vw; }
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--cream);
       color: var(--dark);
       overflow-x: hidden;
+      max-width: 100vw;
     }
     img { display:block; width:100%; }
     a  { text-decoration: none; color: inherit; }
@@ -63,6 +64,7 @@
       font-weight: 600;
       letter-spacing: 0.04em;
       color: var(--dark);
+      white-space: nowrap;
     }
     .logo span { color: var(--gold); }
 
@@ -88,6 +90,7 @@
 
     .header-actions {
       display: flex; align-items: center; gap: 20px;
+      flex-shrink: 0;
     }
     .cart-btn {
       position: relative;
@@ -101,9 +104,10 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       transition: background var(--trans), transform var(--trans);
+      white-space: nowrap;
     }
     .cart-btn:hover { background: var(--gold); transform: translateY(-1px); }
-    .cart-btn svg { width:16px; height:16px; }
+    .cart-btn svg { width:16px; height:16px; flex-shrink: 0; }
     .cart-count {
       background: var(--gold);
       color: var(--dark);
@@ -113,11 +117,13 @@
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       transition: transform 0.2s;
+      flex-shrink: 0;
     }
     .cart-count.bump { transform: scale(1.4); }
 
     .hamburger {
       display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+      flex-shrink: 0;
     }
     .hamburger span {
       display: block; width: 24px; height: 2px;
@@ -136,7 +142,7 @@
       display: flex; align-items: center; justify-content: flex-start;
       padding: 120px 80px 80px;
     }
-    .banner-content { max-width: 620px; }
+    .banner-content { max-width: 620px; width: 100%; min-width: 0; }
     .banner-eyebrow {
       font-size: 0.75rem;
       letter-spacing: 0.2em;
@@ -148,13 +154,14 @@
     }
     .banner h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-size: clamp(2rem, 9vw, 5.5rem);
       font-weight: 300;
-      line-height: 1.1;
+      line-height: 1.15;
       color: var(--white);
       margin-bottom: 24px;
       opacity: 0;
       animation: slideUp 0.8s 0.4s forwards;
+      word-wrap: break-word;
     }
     .banner h1 em { font-style: italic; color: var(--gold2); }
     .banner p {
@@ -301,6 +308,7 @@
       transition: transform var(--trans), box-shadow var(--trans);
       display: flex; flex-direction: column;
       animation: cardIn 0.5s both;
+      min-width: 0;
     }
     .product-card:hover {
       transform: translateY(-6px);
@@ -377,6 +385,8 @@
     .card-footer {
       display: flex; align-items: center; justify-content: space-between;
       margin-top: auto;
+      flex-wrap: wrap;
+      gap: 10px;
     }
     .price {
       font-family: 'Cormorant Garamond', serif;
@@ -394,6 +404,7 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
       transition: background var(--trans), transform var(--trans);
+      white-space: nowrap;
     }
     .add-btn:hover { background: var(--gold); color: var(--dark); transform: scale(1.03); }
     .add-btn:active { transform: scale(0.97); }
@@ -462,10 +473,11 @@
       border-radius: var(--radius);
       padding: 32px 24px;
       text-align: center;
+      min-width: 0;
     }
     .stat-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
+      font-size: clamp(1.6rem, 6vw, 3rem);
       font-weight: 600;
       color: var(--gold);
       line-height: 1;
@@ -587,7 +599,7 @@
       font-size: 0.65rem; color: var(--muted);
     }
     .cart-item-img img { width:100%; height:100%; object-fit:cover; }
-    .cart-item-info { flex: 1; }
+    .cart-item-info { flex: 1; min-width: 0; }
     .cart-item-info h4 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1rem; font-weight: 600;
@@ -599,6 +611,7 @@
     }
     .qty-controls {
       display: flex; align-items: center; gap: 10px;
+      flex-wrap: wrap;
     }
     .qty-btn {
       width: 28px; height: 28px; border-radius: 50%;
@@ -654,6 +667,7 @@
       z-index: 2000;
       display: flex; flex-direction: column; gap: 10px; align-items: center;
       pointer-events: none;
+      max-width: 92vw;
     }
     .toast {
       background: var(--dark);
@@ -666,6 +680,9 @@
       box-shadow: 0 8px 30px rgba(26,21,16,0.25);
       animation: toastIn 0.4s cubic-bezier(.4,0,.2,1);
       white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .toast.out { animation: toastOut 0.3s forwards; }
     .toast-icon { font-size: 1rem; }
@@ -685,7 +702,7 @@
       .about-stats { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
-      header { padding: 0 20px; }
+      header { padding: 0 16px; }
       nav ul { display: none; flex-direction: column; }
       nav ul.open {
         display: flex;
@@ -697,14 +714,39 @@
         gap: 16px;
       }
       .hamburger { display: flex; }
-      .banner { padding: 100px 24px 60px; }
-      #shop, #about, #contact { padding: 60px 24px; }
+      .logo { font-size: 1.25rem; }
+      .banner { padding: 100px 20px 60px; }
+      #shop, #about, #contact { padding: 60px 20px; }
       footer { padding: 24px; flex-direction: column; text-align: center; }
     }
     @media (max-width: 480px) {
-      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .filters { flex-direction: column; }
       .search-wrap { max-width: 100%; }
+      .header-actions { gap: 10px; }
+      .cart-btn { padding: 8px 12px; gap: 6px; }
+      .cart-btn .cart-label { display: none; }
+
+      /* compact product cards, square-ish image, no description, single-line title */
+      .card-img-wrap { aspect-ratio: 1 / 1; }
+      .card-body { padding: 10px 12px 12px; gap: 4px; }
+      .card-body h3 {
+        font-size: 0.9rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 2px;
+      }
+      .card-body .desc { display: none; }
+      .card-footer { margin-top: 6px; }
+      .add-btn { padding: 7px 12px; font-size: 0.65rem; }
+      .price { font-size: 0.95rem; }
+      .badge { font-size: 0.55rem; padding: 3px 8px; top: 8px; left: 8px; }
+      .wishlist-btn { width: 28px; height: 28px; top: 8px; right: 8px; }
+      .wishlist-btn svg { width: 13px; height: 13px; }
+
+      .about-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .stat-card { padding: 20px 12px; }
     }
   </style>
 </head>
@@ -727,7 +769,7 @@
           <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
           <path d="M16 10a4 4 0 01-8 0"/>
         </svg>
-        Cart
+        <span class="cart-label">Cart</span>
         <span class="cart-count" id="cartCount">0</span>
       </button>
       <div class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -741,7 +783,7 @@
     <div class="banner-content">
       <p class="banner-eyebrow">New Collection 2024</p>
       <h1>Elegance in <em>Every</em> Thread</h1>
-      <p>Discover our curated collection of abayas — where timeless tradition meets contemporary grace.</p>
+      <p>Discover our curated collection of abayas, where timeless tradition meets contemporary grace.</p>
       <div class="banner-btns">
         <a href="#shop" class="btn-primary">Shop Now</a>
         <a href="#about" class="btn-ghost">Our Story</a>
@@ -1065,6 +1107,13 @@
 
     document.getElementById("hamburger").addEventListener("click", () => {
       document.getElementById("navMenu").classList.toggle("open");
+    });
+
+    // close mobile menu after tapping a nav link
+    document.querySelectorAll("#navMenu a").forEach(a => {
+      a.addEventListener("click", () => {
+        document.getElementById("navMenu").classList.remove("open");
+      });
     });
 
     window.addEventListener("scroll", () => {
